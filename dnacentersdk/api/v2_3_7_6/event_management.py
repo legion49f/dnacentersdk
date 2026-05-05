@@ -2838,13 +2838,13 @@ class EventManagement(object):
     def create_webhook_destination_v1(
         self,
         description=None,
-        headers=None,
         isProxyRoute=None,
         method=None,
         name=None,
         trustCert=None,
         url=None,
         webhookId=None,
+        webhook_headers=None,
         payload=None,
         http_headers=None,
         active_validation=True,
@@ -2854,13 +2854,13 @@ class EventManagement(object):
 
         Args:
             description(string): Event Management's Description.
-            headers(list): Event Management's headers (list of objects).
             isProxyRoute(boolean): Event Management's Is Proxy Route.
             method(string): Event Management's Method. Available values are 'POST' and 'PUT'.
             name(string): Event Management's Name.
             trustCert(boolean): Event Management's Trust Cert.
             url(string): Event Management's Url.
             webhookId(string): Event Management's Required only for update webhook configuration .
+            webhook_headers(list): Event Management's headers (list of objects).
             http_headers(dict): Dictionary of HTTP Headers to send with the Request
                 .
             payload(dict): A JSON serializable Python object to send in the
@@ -2901,7 +2901,7 @@ class EventManagement(object):
             "url": url,
             "method": method,
             "trustCert": trustCert,
-            "headers": headers,
+            "headers": webhook_headers,
             "isProxyRoute": isProxyRoute,
         }
         _payload.update(payload or {})
@@ -2935,13 +2935,13 @@ class EventManagement(object):
     def update_webhook_destination_v1(
         self,
         description=None,
-        headers=None,
         isProxyRoute=None,
         method=None,
         name=None,
         trustCert=None,
         url=None,
         webhookId=None,
+        webhook_headers=None,
         payload=None,
         http_headers=None,
         active_validation=True,
@@ -2951,13 +2951,13 @@ class EventManagement(object):
 
         Args:
             description(string): Event Management's Description.
-            headers(list): Event Management's headers (list of objects).
             isProxyRoute(boolean): Event Management's Is Proxy Route.
             method(string): Event Management's Method. Available values are 'POST' and 'PUT'.
             name(string): Event Management's Name.
             trustCert(boolean): Event Management's Trust Cert.
             url(string): Event Management's Url.
             webhookId(string): Event Management's Required only for update webhook configuration .
+            webhook_headers(list): Event Management's headers (list of objects).
             http_headers(dict): Dictionary of HTTP Headers to send with the Request
                 .
             payload(dict): A JSON serializable Python object to send in the
@@ -2996,7 +2996,7 @@ class EventManagement(object):
             "url": url,
             "method": method,
             "trustCert": trustCert,
-            "headers": headers,
+            "headers": webhook_headers,
             "isProxyRoute": isProxyRoute,
         }
         _payload.update(payload or {})
@@ -3926,13 +3926,13 @@ class EventManagement(object):
     def create_webhook_destination(
         self,
         description=None,
-        headers=None,
         isProxyRoute=None,
         method=None,
         name=None,
         trustCert=None,
         url=None,
         webhookId=None,
+        webhook_headers=None,
         payload=None,
         http_headers=None,
         active_validation=True,
@@ -3941,13 +3941,13 @@ class EventManagement(object):
         """This function is an alias of create_webhook_destination_v1 .
         Args:
             description(string): Event Management's Description.
-            headers(list): Event Management's headers (list of objects).
             isProxyRoute(boolean): Event Management's Is Proxy Route.
             method(string): Event Management's Method. Available values are 'POST' and 'PUT'.
             name(string): Event Management's Name.
             trustCert(boolean): Event Management's Trust Cert.
             url(string): Event Management's Url.
             webhookId(string): Event Management's Required only for update webhook configuration .
+            webhook_headers(list): Event Management's headers (list of objects).
             http_headers(dict): Dictionary of HTTP Headers to send with the Request
                 .
             payload(): A JSON serializable Python object to send in the
@@ -3962,7 +3962,7 @@ class EventManagement(object):
         """
         return self.create_webhook_destination_v1(
             description=description,
-            headers=headers,
+            webhook_headers=webhook_headers,
             isProxyRoute=isProxyRoute,
             method=method,
             name=name,
@@ -4272,13 +4272,13 @@ class EventManagement(object):
     def update_webhook_destination(
         self,
         description=None,
-        headers=None,
         isProxyRoute=None,
         method=None,
         name=None,
         trustCert=None,
         url=None,
         webhookId=None,
+        webhook_headers=None,
         payload=None,
         http_headers=None,
         active_validation=True,
@@ -4287,13 +4287,13 @@ class EventManagement(object):
         """This function is an alias of update_webhook_destination_v1 .
         Args:
             description(string): Event Management's Description.
-            headers(list): Event Management's headers (list of objects).
             isProxyRoute(boolean): Event Management's Is Proxy Route.
             method(string): Event Management's Method. Available values are 'POST' and 'PUT'.
             name(string): Event Management's Name.
             trustCert(boolean): Event Management's Trust Cert.
             url(string): Event Management's Url.
             webhookId(string): Event Management's Required only for update webhook configuration .
+            webhook_headers(list): Event Management's headers (list of objects).
             http_headers(dict): Dictionary of HTTP Headers to send with the Request
                 .
             payload(): A JSON serializable Python object to send in the
@@ -4308,7 +4308,7 @@ class EventManagement(object):
         """
         return self.update_webhook_destination_v1(
             description=description,
-            headers=headers,
+            webhook_headers=webhook_headers,
             isProxyRoute=isProxyRoute,
             method=method,
             name=name,

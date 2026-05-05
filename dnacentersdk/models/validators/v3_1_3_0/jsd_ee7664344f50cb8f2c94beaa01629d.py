@@ -609,7 +609,7 @@ class JSONSchemaValidatorEe7664344F50Cb8F2C94Beaa01629D(object):
                 },
                 "type": "object"
                 },
-                "portChannelConfig": {
+                "portchannelConfig": {
                 "properties": {
                 "items": {
                 "items": {
@@ -1197,6 +1197,7 @@ class JSONSchemaValidatorEe7664344F50Cb8F2C94Beaa01629D(object):
                 },
                 "type": "object"
                 },
+                "udldGlobalConfig": {},
                 "vlanConfig": {
                 "properties": {
                 "items": {
