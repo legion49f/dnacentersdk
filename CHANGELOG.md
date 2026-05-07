@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.11.3] - 2026-05-05
+### Fixed
+- **Download config methods missing stream support (Issue #246 equivalent / Issue #17)**: Fixed `download_masked_device_configuration()` and `download_unmaskedraw_device_configuration_as_zip()` in Configuration Archive module for v3.1.6.0. These methods were missing `stream=True`, `dirpath`, `save_file`, and `filename` parameters, causing binary file responses to be parsed as JSON and raising `JSONDecodeError`. The fix restores the correct `DownloadResponse`-based implementation present in v2.3.7.9 and v3.1.3.0.
+- **Webhook destination headers collision (Issue #20 equivalent)**: Fixed `TypeError` in `create_webhook_destination()` and `update_webhook_destination()` (including `_v1` variants) across all API versions (2.3.5.3, 2.3.7.6, 2.3.7.9, 3.1.3.0, 3.1.6.0) in the Event Management module. The `headers` parameter was incorrectly overloaded for both webhook custom headers (list) and HTTP request headers (dict). Renamed the webhook payload field parameter to `webhook_headers` to eliminate the collision. Users must now pass custom webhook headers via `webhook_headers=[...]`; the `headers` parameter continues to accept a dict for HTTP transport.
+- **Missing `udldGlobalConfig` support (Issue #246)**: Added `udldGlobalConfig` parameter to `create_configurations_for_an_intended_layer2_feature_on_a_wired_device()` and `update_configurations_for_an_intended_layer2_feature_on_a_wired_device()` across all API versions (2.3.7.9, 3.1.3.0, 3.1.6.0) in the Wired module. UDLD global configuration can now be created and updated through the SDK.
+- **Content-Type None TypeError (Issue #18 equivalent)**: Confirmed fix is already present in `dnacentersdk/utils.py` (`response.headers.get("Content-Type")` is guarded with a `None` check). No change needed.
+- **Port Channel Configuration validator key casing (portchannelConfig)**: Updated request validator schemas for v2.3.7.9, v3.1.3.0, and v3.1.6.0 (`jsd_d7b57050bdb98e9340d0bc4dba`, `jsd_ee7664344f50cb8f2c94beaa01629d`) to use `"portchannelConfig"` (lowercase c) matching the payload key already corrected in [2.10.6]. Previously the schema used `"portChannelConfig"` (uppercase C), so the validator was not actually validating the portchannel payload field.
+- **`udldGlobalConfig` validator relaxed**: Replaced the strict `udldGlobalConfig` JSON schema (which constrained `configType` to an enum, `isUdldEnabled`/`udldAggressive` to booleans, and `messageTime` to integer) with an open schema (`{}`) across all API versions (2.3.7.9, 3.1.3.0, 3.1.6.0). The field is not present in the official Cisco Catalyst Center OpenAPI specification, so a permissive schema prevents false validation failures as the API evolves.
+
 ## [2.11.2] - 2026-02-26
 ### Fixed
 - **`limit` and `offset` parameter types (v2.3.7.9, v3.1.3.0)**: Changed `limit` and `offset` query parameters from `str` to `int` type in `check_type` validations and docstrings across multiple modules, matching the corrected types already applied in v3.1.6.0. Affected modules:
@@ -861,4 +870,5 @@ respond with a binary.
 [2.11.0]: https://github.com/cisco-en-programmability/dnacentersdk/compare/v2.10.6...v2.11.0
 [2.11.1]: https://github.com/cisco-en-programmability/dnacentersdk/compare/v2.11.0...v2.11.1
 [2.11.2]: https://github.com/cisco-en-programmability/dnacentersdk/compare/v2.11.1...v2.11.2
-[Unreleased]: https://github.com/cisco-en-programmability/dnacentersdk/compare/v2.11.2...develop
+[2.11.3]: https://github.com/cisco-en-programmability/dnacentersdk/compare/v2.11.2...v2.11.3
+[Unreleased]: https://github.com/cisco-en-programmability/dnacentersdk/compare/v2.11.3...develop
